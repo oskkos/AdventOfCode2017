@@ -1,5 +1,4 @@
 import { input as day1input } from './day1-input';
-
 export { task1, task2 };
 
 /**
