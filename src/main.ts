@@ -1,12 +1,17 @@
-import { day0101link, day0102link } from './day1' ;
+import * as day1 from './day1' ;
 
 const list = document.createElement('ul');
 document.body.appendChild(list);
 
-const item0101 = document.createElement('li');
-list.appendChild(item0101);
-item0101.appendChild(day0101link);
+list.appendChild(getItem('Day 1 - Task 1', day1.task1));
+list.appendChild(getItem('Day 1 - Task 2', day1.task2));
 
-const item0102 = document.createElement('li');
-list.appendChild(item0102);
-item0102.appendChild(day0102link);
+function getItem(label:string, func:Function):HTMLLIElement {
+  const item = document.createElement('li');
+  const link:HTMLAnchorElement = document.createElement('a');
+  link.textContent = label;
+  link.href = '#';
+  link.onclick = () => { alert(func()); };
+  item.appendChild(link);
+  return item;
+}

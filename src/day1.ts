@@ -1,16 +1,6 @@
-import { input } from './day1-input';
+import { input as day1input } from './day1-input';
 
-const day0101link:HTMLAnchorElement = document.createElement('a');
-day0101link.textContent = 'Day 1 - Task 1';
-day0101link.href = '#';
-day0101link.onclick = () => { alert(task1(input)); };
-
-const day0102link:HTMLAnchorElement = document.createElement('a');
-day0102link.textContent = 'Day 1 - Task 2';
-day0102link.href = '#';
-day0102link.onclick = () => { alert(task2(input)); };
-
-export { day0101link, day0102link };
+export { task1, task2 };
 
 /**
  *  * --- Day 1: Inverse Captcha ---
@@ -53,7 +43,7 @@ export { day0101link, day0102link };
  * 
  * @param input 
  */
-function task1(input:string):number {
+function task1(input:string = day1input):number {
   let sum:number = 0;
   for (let i = 1; i < input.length; i = i + 1) {
     const a:number = parseInt(input.charAt(i - 1), 10);
@@ -94,7 +84,7 @@ function task1(input:string):number {
  * 
  * @param input 
  */
-function task2(input:string):number {
+function task2(input:string = day1input):number {
   const len:number = input.length;
   const half:number = len / 2;
   let sum:number = 0;
