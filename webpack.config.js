@@ -11,7 +11,7 @@ const path = require('path');
           test: /\.ts$/,
           enforce: 'pre',
           loader: 'tslint-loader',
-          options: { fix: true }
+          options: { fix: false }
         },
         {
           use: 'ts-loader',
