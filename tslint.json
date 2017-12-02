@@ -1,0 +1,5 @@
+{
+    "extends": "tslint-config-airbnb",
+    "project": "."
+}
+//     -t, --format [format]                  output format (prose, json, stylish, verbose, pmd, msbuild, checkstyle, vso, fileslist, codeFrame)
