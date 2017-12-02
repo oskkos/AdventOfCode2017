@@ -1,4 +1,6 @@
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require('path');
 
   module.exports = {
     entry: './src/main.ts',
@@ -20,11 +22,13 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
     resolve: {
       extensions: [ '.tsx', '.ts' ]
     },
-    // Add minification
     plugins: [
-      new UglifyJsPlugin({ sourceMap: true })
+      new UglifyJsPlugin({ sourceMap: true }),
+      new HtmlWebpackPlugin({title: 'AdventOfCode 2017'})
     ],
     output: {
-      filename: './dist/app.js',
-    }
+      path: path.resolve(__dirname, './dist'),
+      filename: 'aoc17.js',
+    },
+    watch: true
   };
