@@ -1,14 +1,14 @@
 {
-  "name": "test",
+  "name": "advent-of-code-2017",
   "version": "1.0.0",
-  "main": "build/app.js",
+  "main": "dist/index.html",
   "scripts": {
     "lint": "tslint -c tslint.json -p .",
     "pretest": "npm run lint",
     "test": "jest --coverage",
     "devbuild": "webpack"
   },
-  "author": "",
+  "author": "Oskari Kosonen <o.kosonen@gmail.com>",
   "license": "ISC",
   "devDependencies": {
     "@types/jest": "^21.1.8",

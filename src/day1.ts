@@ -40,24 +40,11 @@ export { task1, task2 };
  * 91212129 produces 9 because the only digit that matches the next one is the last digit, 9.
  * What is the solution to your captcha?
  * 
- * @param input 
+ * @param {string} input
+ * @returns {number}
  */
 function task1(input:string = day1input):number {
-  let sum:number = 0;
-  for (let i = 1; i < input.length; i = i + 1) {
-    const a:number = parseInt(input.charAt(i - 1), 10);
-    const b:number = parseInt(input.charAt(i), 10);
-
-    if (a === b) {
-      sum = sum + a;
-    }
-  }
-  const first:number = parseInt(input.charAt(0), 10);
-  const last:number = parseInt(input.charAt(input.length - 1), 10);
-  if (first === last) {
-    sum = sum + last;
-  }
-  return sum;
+  return runner(input, 1);
 }
 
 /**
@@ -81,23 +68,21 @@ function task1(input:string = day1input):number {
  * 12131415 produces 4.
  * What is the solution to your new captcha?
  * 
- * @param input 
+ * @param {string} input
+ * @returns {number}
  */
 function task2(input:string = day1input):number {
-  const len:number = input.length;
-  const half:number = len / 2;
-  let sum:number = 0;
-  for (let i:number = 0; i < len; i = i + 1) {
-    let pos = i + half;
-    if (pos > len - 1) {
-      pos = pos - len;
-    }
-    const a:number = parseInt(input.charAt(i), 10);
-    const b:number = parseInt(input.charAt(pos), 10);
+  return runner(input, input.length / 2);
+}
 
-    if (a === b) {
-      sum = sum + a;
-    }
-  }
-  return sum;
+// ------------------------------------------------------------------------------------------------
+
+function runner(input:string, offset:number):number {
+  return input
+    .split('')
+    .map(input => +input)
+    .reduce((sum:number, value:number, index:number, array:number[]):number => {
+      const next:number = array[(index + offset) % input.length];
+      return value === next ? sum + value : sum;
+    }, 0);
 }
