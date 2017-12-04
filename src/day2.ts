@@ -29,7 +29,7 @@ export { task1, task2 };
  */
 function task1(input:string = day2input):number {
   return input.split('\n').reduce(
-    (sum:number, rowStr:string, index) => {
+    (sum:number, rowStr:string) => {
       const row:number[] = rowStr.split('\t').map(val => parseInt(val, 10));
       const max = Math.max(...row);
       const min = Math.min(...row);
@@ -68,7 +68,7 @@ function task1(input:string = day2input):number {
  */
 function task2(input:string = day2input):number {
   return input.split('\n').reduce(
-    (sum:number, rowStr:string, index) => {
+    (sum:number, rowStr:string) => {
       const row:number[] = rowStr.split('\t').map(val => parseInt(val, 10));
 
       for (let i = 0; i < row.length; i = i + 1) {

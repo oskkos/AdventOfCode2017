@@ -53,6 +53,7 @@ function task1(input:number = day3input):number {
     left(check, spiral);
     bottom(check, spiral);
     if (!check()) {
+      // noinspection JSSuspiciousNameCombination
       return Math.abs(spiral.x) + Math.abs(spiral.y);
     }
   }
@@ -74,7 +75,6 @@ interface YMap {
   [key:number]: number;
 }
 function pushIntoMap(spiral:Spiral):void {
-  const yMap:YMap = spiral.map[spiral.x];
   if (typeof spiral.map[spiral.x] === 'undefined') {
     spiral.map[spiral.x] = {};
   }
