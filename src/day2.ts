@@ -28,14 +28,9 @@ export { task1, task2 };
  * @param input
  */
 function task1(input:string = day2input):number {
-  return input
-    .split('\n')
-    .reduce((sum:number, rowStr:string) => {
-      const row:number[] = rowStr.split('\t').map(val => parseInt(val, 10));
-      const max = Math.max(...row);
-      const min = Math.min(...row);
-      return sum + (max - min);
-    }, 0);
+  return runner(input, (sum:number, row:number[]) => {
+    return sum + (Math.max(...row) - Math.min(...row));
+  });
 }
 
 /**
@@ -67,22 +62,25 @@ function task1(input:string = day2input):number {
  * @param input 
  */
 function task2(input:string = day2input):number {
-  return input.split('\n').reduce(
-    (sum:number, rowStr:string) => {
-      const row:number[] = rowStr.split('\t').map(val => parseInt(val, 10));
-
-      for (let i = 0; i < row.length; i = i + 1) {
-        for (let j = i + 1; j < row.length; j = j + 1) {
-          if (row[i] > row[j] && row[i] % row[j] === 0) {
-            return sum + (row[i] / row[j]);
-          }
-          if (row[i] < row[j] && row[j] % row[i] === 0) {
-            return sum + (row[j] / row[i]);
-          }
-        }
+  return runner(input, (sum:number, row:number[]) => {
+    for (let i = 0; i < row.length; i = i + 1) {
+      for (let j = i + 1; j < row.length; j = j + 1) {
+        if (Math.max(row[i], row[j]) % Math.min(row[i], row[j]) === 0) {
+          return sum + (Math.max(row[i], row[j]) / Math.min(row[i], row[j]));
+        } 
       }
-      throw new Error('Failed to resolve checksum for row: ' + row.join(', '));
-    },
-    0);
+    }
+    throw new Error('Failed to resolve checksum for row: ' + row.join(', '));
+  });
+}
 
+// ------------------------------------------------------------------------------------------------
+
+type Reducer = (sum:number, row:number[]) => number;
+
+function runner(input:string, reducer:Reducer):number {
+  return input
+  .split('\n')
+  .map(rowStr => rowStr.split('\t').map(val => +val))
+  .reduce(reducer, 0);
 }
