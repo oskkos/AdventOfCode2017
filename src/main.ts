@@ -3,6 +3,7 @@ import * as day2 from './day2' ;
 import * as day3 from './day3' ;
 import * as day4 from './day4' ;
 import * as day5 from './day5' ;
+import * as day6 from './day6' ;
 
 const list = document.createElement('ul');
 document.body.appendChild(list);
@@ -17,6 +18,8 @@ list.appendChild(getItem('Day 4 - Task 1', day4.task1));
 list.appendChild(getItem('Day 4 - Task 2', day4.task2));
 list.appendChild(getItem('Day 5 - Task 1', day5.task1));
 list.appendChild(getItem('Day 5 - Task 2', day5.task2));
+list.appendChild(getItem('Day 6 - Task 1', day6.task1));
+list.appendChild(getItem('Day 6 - Task 2', day6.task2));
 
 function getItem(label:string, func:Function):HTMLLIElement {
   const item = document.createElement('li');
