@@ -154,7 +154,6 @@ function resolve(items:Items, itemName:string, diff:number = 0):number {
     const weight:number = weights.filter(weight => buckets[weight].length === 1)[0];
     return resolve(items, buckets[weight][0], Math.max(...weights) - Math.min(...weights));
   }
-  console.log(`return ${itemName}: ${items[itemName].weight - diff}`);
   return items[itemName].weight - diff;
 }
 
