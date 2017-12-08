@@ -64,7 +64,7 @@ export { task1, task2 };
  * the name of the bottom program?
  *
  * @param {string} input
- * @returns {number}
+ * @returns {string}
  */
 function task1(input:string = day7input):string {
   interface Items {
