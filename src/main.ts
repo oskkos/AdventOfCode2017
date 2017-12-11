@@ -8,6 +8,7 @@ import * as day7 from './day7' ;
 import * as day8 from './day8' ;
 import * as day9 from './day9' ;
 import * as day10 from './day10' ;
+import * as day11 from './day11' ;
 
 const list = document.createElement('ul');
 document.body.appendChild(list);
@@ -32,6 +33,8 @@ list.appendChild(getItem('Day 9 - Task 1', day9.task1));
 list.appendChild(getItem('Day 9 - Task 2', day9.task2));
 list.appendChild(getItem('Day 10 - Task 1', day10.task1));
 list.appendChild(getItem('Day 10 - Task 2', day10.task2));
+list.appendChild(getItem('Day 11 - Task 1', day11.task1));
+list.appendChild(getItem('Day 11 - Task 2', day11.task2));
 
 function getItem(label:string, func:Function):HTMLLIElement {
   const item = document.createElement('li');

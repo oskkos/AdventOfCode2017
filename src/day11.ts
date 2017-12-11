@@ -40,9 +40,14 @@ interface Coords {
   row: number;
   col: number;
 }
+interface Cube {
+  x: number;
+  y: number;
+  z: number;
+}
 
 function task1(input:string = day11input):number {
-  // https://www.redblobgames.com/grids/hexagons/ - "odd-q" vertical layout
+  // https://www.redblobgames.com/grids/hexagons/ ("odd-q" vertical layout)
   const coords:Coords = { row: 0, col: 0 };
   input.split(',').forEach((step:string) => {
     if (step === 'n') {
@@ -74,15 +79,18 @@ function task1(input:string = day11input):number {
     }
   });
   console.log(coords);
-  return distance(coords);
+  return cubeDistance(oddr_to_cube(coords));
 }
 
-function distance(coords:Coords):number {
-  return (Math.abs(coords.col)
-    + Math.abs(coords.col + coords.row)
-    + Math.abs(coords.row)) / 2;
+function oddr_to_cube(hex:Coords):Cube {
+  const x:number = hex.row - (hex.col - (hex.col & 1)) / 2;
+  const z:number = hex.col;
+  const y:number = -x - z;
+  return { x, y, z };
 }
-
+function cubeDistance(cube:Cube):number {
+  return (Math.abs(cube.x) + Math.abs(cube.y) + Math.abs(cube.z)) / 2;
+}
 
 function task2(input:string = day11input):number {
   return +input;
