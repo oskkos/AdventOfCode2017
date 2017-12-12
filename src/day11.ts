@@ -78,7 +78,6 @@ function task1(input:string = day11input):number {
       throw new Error(`Unknown step: ${step}`);
     }
   });
-  console.log(coords);
   return cubeDistance(oddr_to_cube(coords));
 }
 
