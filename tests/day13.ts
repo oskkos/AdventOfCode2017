@@ -17,5 +17,5 @@ test('example input', () => {
   expect(day13.task2(input)).toBe(10);
 });
 test('actual input', () => {
-  expect(day13.task2(day13Input)).toBe(1624);
+  expect(day13.task2(day13Input)).toBe(3923436);
 });
