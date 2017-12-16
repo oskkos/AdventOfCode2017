@@ -97,48 +97,17 @@ function task2(input:string = day14input):number {
   return regions;
 }
 function fillRegion(map:Map, row:number, cell:number, region:number) {
-  map[row][cell] = region;
-  if (map[row - 1] && map[row - 1][cell] === '#') {
-    fillRegion(map, row - 1, cell, region);
+  if (typeof map[row] === 'undefined' || typeof map[row][cell] === 'undefined') {
+    return;
   }
-  if (map[row + 1] && map[row + 1][cell] === '#') {
-    fillRegion(map, row + 1, cell, region);
+  if (map[row][cell] !== '#') {
+    return;
   }
-  if (map[row][cell - 1] && map[row][cell - 1] === '#') {
-    fillRegion(map, row, cell - 1, region);
-  }
-  if (map[row][cell + 1] && map[row][cell + 1] === '#') {
-    fillRegion(map, row, cell + 1, region);
-  }
-/*
-  const regions:number = runner(input).reduce((regions, row, rowIndex) => {
-    row.split('').map(v => +v).forEach((val, cellIndex) => {
-      if (val !== 1) { return; }
-
-      if (map[rowIndex - 1] && map[rowIndex - 1][cellIndex]) {
-        pushToMap(map, rowIndex, cellIndex, map[rowIndex - 1][cellIndex ]);
-        return regions;
-      }
-      if (map[rowIndex + 1] && map[rowIndex + 1][cellIndex]) {
-        pushToMap(map, rowIndex, cellIndex, map[rowIndex + 1][cellIndex]);
-        return regions;
-      }
-      if (map[rowIndex] && map[rowIndex][cellIndex - 1]) {
-        pushToMap(map, rowIndex, cellIndex, map[rowIndex][cellIndex - 1]);
-        return regions;
-      }
-      if (map[rowIndex] && map[rowIndex][cellIndex + 1]) {
-        pushToMap(map, rowIndex, cellIndex, map[rowIndex][cellIndex + 1]);
-        return regions;
-      }
-      regions = regions + 1;
-      pushToMap(map, rowIndex, cellIndex, regions);
-    });
-    return regions;
-  }, 0);
-  console.log(map);
-  return regions;
-  */
+  pushToMap(map, row, cell, region);
+  fillRegion(map, row - 1, cell, region);
+  fillRegion(map, row + 1, cell, region);
+  fillRegion(map, row, cell - 1, region);
+  fillRegion(map, row, cell + 1, region);
 }
 interface Map {
   [x:number]: YMap;
@@ -147,7 +116,7 @@ interface YMap {
   [y:number]: number|string;
 }
 function pushToMap(map:Map, row:number, cell:number, region:number|string) {
-  if (!map[row]) {
+  if (typeof map[row] === 'undefined') {
     map[row] = {};
   }
   map[row][cell] = region;
