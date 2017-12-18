@@ -1,5 +1,5 @@
 import { input as day10input } from './day10-input';
-export { task1, task2 };
+export { task1, task2, runner };
 
 /**
  * --- Day 10: Knot Hash ---
