@@ -47,8 +47,25 @@ interface Cube {
 }
 
 function task1(input:string = day11input):number {
+  return runner(input)[0];
+}
+
+/**
+ * --- Part Two ---
+ *
+ * How many steps away is the furthest he ever got from his starting position?
+ *
+ * @param {string} input
+ * @returns {number}
+ */
+function task2(input:string = day11input):number {
+  return runner(input)[1];
+}
+
+function runner(input:string):number[] {
   // https://www.redblobgames.com/grids/hexagons/ ("odd-q" vertical layout)
   const coords:Coords = { row: 0, col: 0 };
+  let maxDistance:number = 0;
   input.split(',').forEach((step:string) => {
     if (step === 'n') {
       coords.row = coords.row - 1;
@@ -77,20 +94,21 @@ function task1(input:string = day11input):number {
     } else {
       throw new Error(`Unknown step: ${step}`);
     }
+    const currentDistance:number = cubeDistance(oddqToCube(coords));
+    if (currentDistance > maxDistance) {
+      maxDistance = currentDistance;
+    }
   });
-  return cubeDistance(oddr_to_cube(coords));
+  const finalDistance:number = cubeDistance(oddqToCube(coords));
+  return [finalDistance, maxDistance];
 }
 
-function oddr_to_cube(hex:Coords):Cube {
-  const x:number = hex.row - (hex.col - (hex.col & 1)) / 2;
-  const z:number = hex.col;
+function oddqToCube(hex:Coords):Cube {
+  const x:number = hex.col;
+  const z:number = hex.row - (hex.col - (hex.col & 1)) / 2;
   const y:number = -x - z;
   return { x, y, z };
 }
 function cubeDistance(cube:Cube):number {
   return (Math.abs(cube.x) + Math.abs(cube.y) + Math.abs(cube.z)) / 2;
-}
-
-function task2(input:string = day11input):number {
-  return +input;
 }

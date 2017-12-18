@@ -16,3 +16,7 @@ test('example input 4', () => {
 test('actual input', () => {
   expect(day11.task1(day11Input)).toBe(650);
 });
+
+test('actual input', () => {
+  expect(day11.task2(day11Input)).toBe(1465);
+});
