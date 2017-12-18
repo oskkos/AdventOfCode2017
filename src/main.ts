@@ -14,6 +14,7 @@ import * as day13 from './day13' ;
 import * as day14 from './day14' ;
 import * as day16 from './day16' ;
 import * as day17 from './day17' ;
+import * as day18 from './day18' ;
 
 const list = document.createElement('ul');
 document.body.appendChild(list);
@@ -50,6 +51,7 @@ list.appendChild(getItem('Day 16 - Task 1', day16.task1));
 list.appendChild(getItem('Day 16 - Task 2', day16.task2));
 list.appendChild(getItem('Day 17 - Task 1', day17.task1));
 list.appendChild(getItem('Day 17 - Task 2', day17.task2));
+list.appendChild(getItem('Day 18 - Task 1', day18.task1));
 
 function getItem(label:string, func:Function):HTMLLIElement {
   const item = document.createElement('li');
